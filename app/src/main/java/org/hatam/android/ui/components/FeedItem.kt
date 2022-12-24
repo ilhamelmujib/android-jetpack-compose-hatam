@@ -15,6 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -43,11 +44,13 @@ fun FeedItem(
         ) {
             TopFeed(feed)
             AsyncImage(
+                placeholder = painterResource(R.drawable.bg_gray),
                 model = feed.photo,
                 contentScale = ContentScale.Crop,
                 contentDescription = null,
                 modifier = Modifier
                     .fillMaxWidth()
+                    .heightIn(200.dp)
                     .wrapContentHeight()
             )
             BottomFeed(feed)
@@ -62,6 +65,7 @@ fun TopFeed(
 ) {
     Row(modifier = modifier.padding(20.dp)) {
         AsyncImage(
+            placeholder = painterResource(R.drawable.bg_gray),
             model = feed.user?.photo,
             contentScale = ContentScale.Crop,
             contentDescription = null,
@@ -108,6 +112,8 @@ fun BottomFeed(
         Text(
             text = feed.caption.notNull(),
             fontSize = 14.sp,
+            maxLines = 2,
+            overflow = TextOverflow.Ellipsis,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 20.dp, start = 20.dp, end = 20.dp)

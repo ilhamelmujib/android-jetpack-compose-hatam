@@ -4,7 +4,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -83,11 +82,13 @@ fun FeedContent(
 ) {
     Column(modifier = modifier) {
         AsyncImage(
+            placeholder = painterResource(R.drawable.bg_gray),
             model = feed.photo,
             contentScale = ContentScale.Crop,
             contentDescription = null,
             modifier = Modifier
                 .fillMaxWidth()
+                .heightIn(200.dp)
                 .wrapContentHeight()
         )
         BottomFeedContent(feed)
@@ -173,6 +174,7 @@ fun FeedContentList(
             val data = feeds.filterNot { it.id.toLong() == feedId }
             data.forEach {
                 AsyncImage(
+                    placeholder = painterResource(R.drawable.bg_gray),
                     model = it.photo,
                     contentScale = ContentScale.Crop,
                     contentDescription = null,

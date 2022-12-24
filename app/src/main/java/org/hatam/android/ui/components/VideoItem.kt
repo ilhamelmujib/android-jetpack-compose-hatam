@@ -54,6 +54,7 @@ fun VideoItem(
                 .height(140.dp)
         ) {
             AsyncImage(
+                placeholder = painterResource(R.drawable.bg_gray),
                 model = video.code.getThumbnailYoutube(),
                 contentScale = ContentScale.Crop,
                 contentDescription = null,
