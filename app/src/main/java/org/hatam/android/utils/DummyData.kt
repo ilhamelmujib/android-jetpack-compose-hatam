@@ -19,11 +19,11 @@ object DummyData {
 
     val feeds = listOf(
         Feed(1, "Assalamualaikum", "https://ikilhojatim.com/wp-content/uploads/2021/04/ssbk.jpg", 1),
-        Feed(1, "Assalamualaikum", "https://ikilhojatim.com/wp-content/uploads/2021/04/ssbk.jpg", 1),
-        Feed(1, "Assalamualaikum", "https://ikilhojatim.com/wp-content/uploads/2021/04/ssbk.jpg", 1),
-        Feed(1, "Assalamualaikum", "https://ikilhojatim.com/wp-content/uploads/2021/04/ssbk.jpg", 1),
-        Feed(1, "Assalamualaikum", "https://ikilhojatim.com/wp-content/uploads/2021/04/ssbk.jpg", 1),
-        Feed(1, "Assalamualaikum", "https://ikilhojatim.com/wp-content/uploads/2021/04/ssbk.jpg", 1),
-        Feed(1, "Assalamualaikum", "https://ikilhojatim.com/wp-content/uploads/2021/04/ssbk.jpg", 1),
+        Feed(2, "Assalamualaikum", "https://ikilhojatim.com/wp-content/uploads/2021/04/ssbk.jpg", 1),
+        Feed(3, "Assalamualaikum", "https://ikilhojatim.com/wp-content/uploads/2021/04/ssbk.jpg", 1),
+        Feed(4, "Assalamualaikum", "https://ikilhojatim.com/wp-content/uploads/2021/04/ssbk.jpg", 1),
+        Feed(5, "Assalamualaikum", "https://ikilhojatim.com/wp-content/uploads/2021/04/ssbk.jpg", 1),
+        Feed(6, "Assalamualaikum", "https://ikilhojatim.com/wp-content/uploads/2021/04/ssbk.jpg", 1),
+        Feed(7, "Assalamualaikum", "https://ikilhojatim.com/wp-content/uploads/2021/04/ssbk.jpg", 1),
     )
 }

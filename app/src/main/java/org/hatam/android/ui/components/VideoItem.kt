@@ -17,11 +17,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import org.hatam.android.R
+import org.hatam.android.model.Video
 import org.hatam.android.ui.theme.AllNewHatamTheme
+import org.hatam.android.utils.getThumbnailYoutube
 
 @Composable
 fun VideoItem(
-    photoUrl: String,
+    video: Video,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -33,7 +35,7 @@ fun VideoItem(
             contentAlignment = Alignment.Center
         ) {
             AsyncImage(
-                model = photoUrl,
+                model = video.code.getThumbnailYoutube(),
                 contentScale = ContentScale.Crop,
                 contentDescription = null,
                 modifier = Modifier
@@ -67,6 +69,6 @@ fun VideoItem(
 @Composable
 fun VideoItemPreview() {
     AllNewHatamTheme {
-        VideoItem("2Bi06euAYlw")
+        VideoItem(Video())
     }
 }

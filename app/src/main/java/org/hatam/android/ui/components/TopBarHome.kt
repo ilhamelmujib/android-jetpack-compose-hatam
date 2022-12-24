@@ -2,8 +2,10 @@ package org.hatam.android.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -21,37 +23,46 @@ import org.hatam.android.R
 import org.hatam.android.ui.theme.AllNewHatamTheme
 
 @Composable
-fun TopBar(
+fun TopBarHome(
     modifier: Modifier = Modifier
 ) {
-    Row(
+    Card(
         modifier = modifier
             .fillMaxWidth()
-            .padding(10.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween
+            .clickable { },
+        elevation = 10.dp,
     ) {
         Row(
-            verticalAlignment = Alignment.CenterVertically
+            modifier = modifier
+                .fillMaxWidth()
+                .padding(10.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Avatar()
-            Greetings()
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Avatar()
+                Greetings()
+            }
+            Image(
+                painter = painterResource(R.drawable.png_logo),
+                contentDescription = null,
+                modifier = Modifier
+                    .width(100.dp)
+                    .height(40.dp)
+            )
         }
-        Image(
-            painter = painterResource(R.drawable.png_logo),
-            contentDescription = null,
-            modifier = Modifier
-                .width(100.dp)
-                .height(40.dp)
-        )
     }
-
 }
 
 @Composable
-fun Avatar() {
+fun Avatar(
+    modifier: Modifier = Modifier
+) {
     Box(
         contentAlignment = Alignment.BottomEnd,
+        modifier = modifier,
     ) {
         Image(
             painter = painterResource(R.drawable.jpeg_avatar),
@@ -66,7 +77,7 @@ fun Avatar() {
             contentScale = ContentScale.Crop,
             modifier = Modifier
                 .shadow(elevation = 4.dp, shape = CircleShape)
-                .size(12.dp)
+                .size(15.dp)
                 .clip(CircleShape)
                 .background(Color.White)
                 .padding(2.dp)
@@ -75,9 +86,11 @@ fun Avatar() {
 }
 
 @Composable
-fun Greetings() {
+fun Greetings(
+    modifier: Modifier = Modifier
+) {
     Column(
-        modifier = Modifier.padding(start = 10.dp)
+        modifier = modifier.padding(start = 10.dp)
     ) {
         Text(
             text = "Assalmualaikum",
@@ -93,8 +106,8 @@ fun Greetings() {
 
 @Preview(showBackground = true)
 @Composable
-fun TopBarPreview() {
+fun TopBarHomePreview() {
     AllNewHatamTheme {
-        TopBar()
+        TopBarHome()
     }
 }

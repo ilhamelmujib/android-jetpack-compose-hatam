@@ -1,20 +1,19 @@
 package org.hatam.android.ui.screen.home
 
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import org.hatam.android.ui.common.UiState
 import org.hatam.android.ui.components.*
-import org.hatam.android.ui.theme.AllNewHatamTheme
-import org.hatam.android.utils.DummyData
 
 @Composable
 fun HomeScreen(
@@ -26,14 +25,10 @@ fun HomeScreen(
     Scaffold(
         modifier = modifier,
         topBar = {
-            TopBar()
+            TopBarHome()
         }
-    ) {
-        Column(modifier = modifier.padding(it)) {
-            ShariaPoint()
-            HomeMenu()
-            SahamQu()
-            Spacer(modifier = Modifier.height(15.dp))
+    ) { innerPadding ->
+        Box {
             viewModel.uiState.collectAsState(
                 initial = UiState.Loading
             ).value.let { uiState ->
@@ -42,22 +37,25 @@ fun HomeScreen(
                         viewModel.getAllData()
                     }
                     is UiState.Success -> {
-                        VideoRow(uiState.data.videos)
+                        LazyColumn(
+                            modifier = modifier.padding(innerPadding)
+                        ) {
+                            item {
+                                ShariaPoint()
+                                HomeMenu()
+                                SahamQu()
+                                Spacer(modifier = Modifier.height(15.dp))
+                                VideoRow(uiState.data.videos)
+                                Spacer(modifier = Modifier.height(25.dp))
+                            }
+                            items(uiState.data.feeds, key = { it.id }) {
+                                FeedItem(it)
+                            }
+                        }
                     }
                     is UiState.Error -> {}
                 }
             }
-        }
-    }
-}
-
-@Preview
-@Composable
-fun HomeScreenPreview() {
-    AllNewHatamTheme {
-        Column {
-            HomeScreen()
-            VideoRow(DummyData.videos)
         }
     }
 }
