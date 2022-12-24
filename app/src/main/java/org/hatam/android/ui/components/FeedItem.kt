@@ -22,24 +22,26 @@ import coil.compose.AsyncImage
 import org.hatam.android.R
 import org.hatam.android.model.Feed
 import org.hatam.android.ui.theme.AllNewHatamTheme
+import org.hatam.android.utils.notNull
 
 @Composable
 fun FeedItem(
     feed: Feed,
-    modifier: Modifier = Modifier,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     Card(
         modifier = modifier
             .fillMaxWidth()
             .padding(bottom = 15.dp, start = 15.dp, end = 15.dp)
-            .clickable { },
+            .clickable { onClick() },
         elevation = 10.dp,
         shape = RoundedCornerShape(8.dp)
     ) {
         Column(
             modifier = modifier
         ) {
-            TopFeed()
+            TopFeed(feed)
             AsyncImage(
                 model = feed.photo,
                 contentScale = ContentScale.Crop,
@@ -48,18 +50,20 @@ fun FeedItem(
                     .fillMaxWidth()
                     .wrapContentHeight()
             )
-            BottomFeed()
+            BottomFeed(feed)
         }
     }
 }
 
 @Composable
 fun TopFeed(
+    feed: Feed,
     modifier: Modifier = Modifier
 ) {
     Row(modifier = modifier.padding(20.dp)) {
-        Image(
-            painter = painterResource(R.drawable.jpeg_avatar),
+        AsyncImage(
+            model = feed.user?.photo,
+            contentScale = ContentScale.Crop,
             contentDescription = null,
             modifier = Modifier
                 .size(40.dp)
@@ -72,7 +76,7 @@ fun TopFeed(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "M Ilham Abdul Mujib",
+                    text = feed.user?.name.notNull(),
                     fontSize = 18.sp,
                     fontWeight = FontWeight.SemiBold
                 )
@@ -86,7 +90,7 @@ fun TopFeed(
                 )
             }
             Text(
-                text = "1 jam yang lalu",
+                text = feed.createdAt.notNull(),
                 fontSize = 13.sp,
                 color = Color.Gray
             )
@@ -97,11 +101,12 @@ fun TopFeed(
 
 @Composable
 fun BottomFeed(
+    feed: Feed,
     modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier) {
         Text(
-            text = "Alhamdulillah bisa silaturahmi guys",
+            text = feed.caption.notNull(),
             fontSize = 14.sp,
             modifier = Modifier
                 .fillMaxWidth()
@@ -131,7 +136,7 @@ fun BottomFeed(
                 )
             }
             Text(
-                text = "1.112 suka",
+                text = feed.totalLikes.notNull(),
                 fontSize = 14.sp,
             )
         }
@@ -143,6 +148,6 @@ fun BottomFeed(
 @Composable
 fun FeedItemPreview() {
     AllNewHatamTheme {
-        FeedItem(Feed())
+        FeedItem(Feed(), {})
     }
 }

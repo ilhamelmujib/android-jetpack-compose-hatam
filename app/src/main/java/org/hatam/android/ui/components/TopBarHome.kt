@@ -24,12 +24,12 @@ import org.hatam.android.ui.theme.AllNewHatamTheme
 
 @Composable
 fun TopBarHome(
-    modifier: Modifier = Modifier
+    navigateToProfile : () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     Card(
         modifier = modifier
-            .fillMaxWidth()
-            .clickable { },
+            .fillMaxWidth(),
         elevation = 10.dp,
     ) {
         Row(
@@ -40,7 +40,10 @@ fun TopBarHome(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Row(
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.clickable {
+                    navigateToProfile()
+                }
             ) {
                 Avatar()
                 Greetings()
@@ -66,7 +69,7 @@ fun Avatar(
     ) {
         Image(
             painter = painterResource(R.drawable.jpeg_avatar),
-            contentDescription = null,
+            contentDescription = "about_page",
             modifier = Modifier
                 .size(40.dp)
                 .clip(CircleShape)
@@ -97,7 +100,7 @@ fun Greetings(
             fontSize = 13.sp
         )
         Text(
-            text = "M Ilham Abdul Mujib",
+            text = "Muhamad Ilham",
             fontSize = 18.sp,
             fontWeight = FontWeight.SemiBold
         )
@@ -108,6 +111,6 @@ fun Greetings(
 @Composable
 fun TopBarHomePreview() {
     AllNewHatamTheme {
-        TopBarHome()
+        TopBarHome({})
     }
 }

@@ -1,11 +1,8 @@
 package org.hatam.android.ui.components
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
@@ -20,18 +17,20 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import org.hatam.android.R
 import org.hatam.android.ui.theme.AllNewHatamTheme
 
 @Composable
 fun TopBarScreen(
     title: String,
+    navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
     Card(
         modifier = modifier
-            .fillMaxWidth()
-            .clickable { },
+            .fillMaxWidth(),
         elevation = 10.dp,
     ) {
         Box(
@@ -40,8 +39,11 @@ fun TopBarScreen(
         ) {
             Button(
                 modifier = Modifier.align(Alignment.CenterStart),
+                elevation = null,
                 colors = ButtonDefaults.buttonColors(backgroundColor = Color.Transparent),
-                onClick = { /*TODO*/ }) {
+                onClick = {
+                    navController.navigateUp()
+                }) {
                 Image(
                     painter = painterResource(R.drawable.ic_back),
                     contentDescription = null,
@@ -65,6 +67,6 @@ fun TopBarScreen(
 @Composable
 fun TopBarScreenPreview() {
     AllNewHatamTheme {
-        TopBarScreen("Profil")
+        TopBarScreen("Profil", rememberNavController())
     }
 }

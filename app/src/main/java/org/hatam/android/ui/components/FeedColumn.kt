@@ -25,7 +25,7 @@ fun FeedColumn(
         modifier = modifier.fillMaxWidth()
     ) {
         items(feeds, key = { it.id.notNull() }) {
-            FeedItem(it)
+            FeedItem(it, {})
         }
     }
 }

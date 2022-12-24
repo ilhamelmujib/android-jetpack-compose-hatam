@@ -22,36 +22,29 @@ import org.hatam.android.ui.theme.AllNewHatamTheme
 fun ProfileScreen(
     modifier: Modifier = Modifier
 ) {
-    Scaffold(
-        modifier = modifier,
-        topBar = {
-            TopBarScreen("Profil")
-        }
-    ) { innerPadding ->
-        Column(
+    Column(
+        modifier = modifier
+            .fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Spacer(modifier = Modifier.height(20.dp))
+        Image(
+            painter = painterResource(R.drawable.jpeg_avatar),
+            contentDescription = null,
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(innerPadding),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Spacer(modifier = Modifier.height(20.dp))
-            Image(
-                painter = painterResource(R.drawable.jpeg_avatar),
-                contentDescription = null,
-                modifier = Modifier
-                    .size(100.dp)
-                    .clip(CircleShape)
-            )
-            Text(
-                text = "M Ilham Abdul Mujib",
-                fontSize = 18.sp,
-                fontWeight = FontWeight.SemiBold
-            )
-            Text(
-                text = "ilham.elmujib@gmail.com",
-                fontSize = 13.sp
-            )
-        }
+                .size(100.dp)
+                .clip(CircleShape)
+        )
+        Spacer(modifier = Modifier.height(10.dp))
+        Text(
+            text = "Muhamad Ilham",
+            fontSize = 18.sp,
+            fontWeight = FontWeight.SemiBold
+        )
+        Text(
+            text = "ilham.elmujib@gmail.com",
+            fontSize = 13.sp
+        )
     }
 
 }

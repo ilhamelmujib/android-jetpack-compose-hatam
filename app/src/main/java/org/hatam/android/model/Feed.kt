@@ -1,7 +1,10 @@
 package org.hatam.android.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 class Feed(
     @SerializedName("id")
     val id: Int = 0,
@@ -12,22 +15,13 @@ class Feed(
     @SerializedName("photo")
     val photo: String? = null,
 
-    @SerializedName("status")
-    val status: Int? = null,
-
-    @SerializedName("isLike")
-    var isLike: Int? = null,
-
-    @SerializedName("isReported")
-    var isReported: Int? = null,
-
     @SerializedName("totalLikes")
-    var totalLikes: Int? = null,
+    var totalLikes: String? = null,
 
     @SerializedName("createdAt")
     val createdAt: String? = null,
 
-    @SerializedName("teacher")
-    val teacher: Teacher? = null,
-)
+    @SerializedName("user")
+    val user: User? = null,
+) : Parcelable
 

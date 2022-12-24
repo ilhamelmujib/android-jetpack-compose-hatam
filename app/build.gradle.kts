@@ -50,7 +50,6 @@ android {
 }
 
 dependencies {
-    implementation("androidx.benchmark:benchmark-common:1.0.0")
     val composeBom = platform(libs.androidx.compose.bom)
     implementation(composeBom)
     androidTestImplementation(composeBom)
@@ -62,6 +61,8 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material)
     implementation(libs.androidx.lifecycle.viewModelCompose)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.accompanist.flowlayout)
     implementation(libs.gson)
     implementation(libs.coil.kt.compose)
 
